@@ -11,8 +11,8 @@ export const profile = {
   phoneHref: '+917986887107',
   website: 'https://satyamkumar.dev',
   links: {
-    github: 'https://github.com/satyam0238',
-    linkedin: 'https://www.linkedin.com/in/satyam-kumar/',
+    github: 'https://github.com/Satyamkumar-003',
+    linkedin: 'https://www.linkedin.com/in/satyam-kumar-7a9780247/',
   },
   resumeUrl: '/SatyamKumar_Backend_Resume.pdf',
 
@@ -146,7 +146,7 @@ export const projects = [
       'MongoDB schemas modeling users, services, and booking history.',
     ],
     stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
-    githubUrl: 'https://github.com/satyam0238/serviceprovider',
+    githubUrl: 'https://github.com/Satyamkumar-003/serviceprovider',
     liveUrl: 'https://satyam2237003.netlify.app/',
   },
   {
@@ -161,7 +161,7 @@ export const projects = [
       'MongoDB schemas for menus, users, and order history with Mongoose.',
     ],
     stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
-    githubUrl: 'https://github.com/satyam0238/mern-food-delivery',
+    githubUrl: 'https://github.com/Satyamkumar-003/mern-food-ordering',
     liveUrl: 'https://aahara-food-dilevery-app.netlify.app/',
   },
 ];
