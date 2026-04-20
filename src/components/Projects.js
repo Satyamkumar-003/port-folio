@@ -1,103 +1,82 @@
 import React from 'react';
-import { FaGithub, FaExternalLinkAlt, FaCalendarAlt, FaUsers, FaCode } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaStar } from 'react-icons/fa';
+import { projects } from '../data/profile';
 import './Projects.css';
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "Food Delivery App",
-      description: "A full-stack food delivery application with user authentication, restaurant management, and real-time order tracking.",
-      technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT"],
-      duration: "January 2025 - February 2025",
-      teamSize: "Individual",
-      environment: "Windows",
-      features: [
-        "Implemented secure user authentication and authorization (JWT-based login/signup)",
-        "Integrated MongoDB for storing user data, restaurant menus, and order history with Mongoose schemas",
-        "Enabled real-time cart updates"
-      ],
-      githubLink: "https://github.com/Satyamkumar-003/mern-food-delivery", // Add your GitHub link here
-      liveLink: "https://aahara-food-dilevery-app.netlify.app/",
-      image: "food-delivery-app.jpg" // Add project image
-    },
-    {
-      title: "Service Providing App",
-      description: "A React-based service marketplace where users can find and book various home services.",
-      technologies: ["React.js", "JavaScript", "CSS", "HTML"],
-      duration: "December 2024 - January 2025",
-      teamSize: "Individual",
-      environment: "Windows",
-      features: [
-        "Developed a React-app where a user can find the various types of services for home",
-        "Implemented service listing, booking flow, user authentication and a contact section"
-      ],
-      githubLink: "https://github.com/Satyamkumar-003/serviceprovider", // Add your GitHub link here
-      liveLink: "https://satyam2237003.netlify.app/",
-      image: "service-app.jpg" // Add project image
-    }
-  ];
-
   return (
     <section id="projects" className="projects section">
       <div className="container">
-        <h2 className="section-title projects-title-contrast">Projects</h2>
-        
+        <div className="section-header">
+          <span className="section-eyebrow">Projects</span>
+          <h2 className="section-title">Selected work.</h2>
+          <p className="section-lede">
+            A mix of production work and personal full-stack projects — each one shipped, deployed,
+            and built end-to-end by me.
+          </p>
+        </div>
+
         <div className="projects-grid">
-          {projects.map((project, index) => (
-            <div key={index} className="project-card">
-              <div className="project-image">
-                <div className="project-placeholder">
-                  <FaCode />
-                  <span>{project.title}</span>
+          {projects.map((p) => (
+            <article key={p.title} className={`project-card card ${p.featured ? 'is-featured' : ''}`}>
+              {p.featured ? (
+                <span className="featured-badge">
+                  <FaStar /> Featured
+                </span>
+              ) : null}
+
+              <header className="project-head">
+                <div>
+                  <h3 className="project-title">{p.title}</h3>
+                  <p className="project-status">
+                    <span className="status-dot small" aria-hidden="true" />
+                    {p.status}
+                  </p>
                 </div>
+                <span className="project-period">{p.period}</span>
+              </header>
+
+              <p className="project-desc">{p.description}</p>
+
+              <ul className="project-bullets">
+                {p.bullets.map((b, i) => (
+                  <li key={i}>{b}</li>
+                ))}
+              </ul>
+
+              <div className="project-stack">
+                {p.stack.map((s) => (
+                  <span key={s} className="pill">{s}</span>
+                ))}
               </div>
-              
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                
-                <div className="project-meta">
-                  <div className="meta-item">
-                    <FaCalendarAlt />
-                    <span>{project.duration}</span>
-                  </div>
-                  <div className="meta-item">
-                    <FaUsers />
-                    <span>{project.teamSize}</span>
-                  </div>
-                  <div className="meta-item">
-                    <FaCode />
-                    <span>{project.environment}</span>
-                  </div>
-                </div>
 
-                <div className="project-technologies">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-tag">{tech}</span>
-                  ))}
-                </div>
-
-                <div className="project-features">
-                  <h4>Key Features:</h4>
-                  <ul>
-                    {project.features.map((feature, featureIndex) => (
-                      <li key={featureIndex}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-
+              {(p.githubUrl || p.liveUrl) && (
                 <div className="project-links">
-                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                    <FaGithub />
-                    <span>View Code</span>
-                  </a>
-                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="project-link">
-                    <FaExternalLinkAlt />
-                    <span>Live Demo</span>
-                  </a>
+                  {p.githubUrl ? (
+                    <a
+                      href={p.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link"
+                      aria-label={`View ${p.title} source on GitHub`}
+                    >
+                      <FaGithub /> Source
+                    </a>
+                  ) : null}
+                  {p.liveUrl ? (
+                    <a
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link"
+                      aria-label={`Open ${p.title} live demo`}
+                    >
+                      <FaExternalLinkAlt /> Live
+                    </a>
+                  ) : null}
                 </div>
-              </div>
-            </div>
+              )}
+            </article>
           ))}
         </div>
       </div>
@@ -105,4 +84,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;

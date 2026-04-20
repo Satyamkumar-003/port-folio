@@ -1,226 +1,93 @@
-# Satyam Kumar - Portfolio Website
+# Satyam Kumar — Portfolio
 
-A modern, responsive portfolio website built with React.js showcasing my skills, projects, and achievements.
+Personal portfolio for **Satyam Kumar**, Java Backend Developer interning at BigBasket (Tata Group). Built with React, plain CSS (no UI library), and a small content-driven architecture so the site is easy to maintain.
 
-## 🚀 Features
-
-- **Responsive Design**: Works perfectly on all devices
-- **Modern UI/UX**: Clean and professional design with smooth animations
-- **Interactive Sections**: Home, About, Skills, Projects, Education, Certifications, and Contact
-- **Contact Form**: Functional contact form for easy communication
-- **Smooth Scrolling**: Seamless navigation between sections
-- **Social Links**: Direct links to GitHub, LinkedIn, and other profiles
-
-## 📋 Sections
-
-1. **Home**: Hero section with introduction and key statistics
-2. **About**: Personal background, academic journey, and contact details
-3. **Skills**: Technical competencies with progress bars and interpersonal skills
-4. **Projects**: Showcase of projects with technologies used and features
-5. **Education**: Academic timeline and achievements
-6. **Certifications**: Professional certifications with descriptions
-7. **Contact**: Contact form and contact information
-
-## 🛠️ Technologies Used
-
-- **React.js**: Frontend framework
-- **React Router**: Navigation
-- **React Icons**: Icon library
-- **CSS3**: Styling with modern features
-- **HTML5**: Semantic markup
-
-## 📦 Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd satyam-portfolio
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm start
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:3000`
-
-## 🔧 Customization Guide
-
-### 1. Personal Information
-Update your personal details in the following files:
-- `src/components/Home.js` - Hero section content
-- `src/components/About.js` - Personal information and background
-- `src/components/Contact.js` - Contact details
-
-### 2. Projects
-Update your projects in `src/components/Projects.js`:
-```javascript
-const projects = [
-  {
-    title: "Your Project Title",
-    description: "Project description",
-    technologies: ["React", "Node.js", "MongoDB"],
-    duration: "2 weeks",
-    teamSize: "Individual",
-    environment: "Windows",
-    features: [
-      "Feature 1",
-      "Feature 2"
-    ],
-    githubLink: "https://github.com/your-repo",
-    liveLink: "https://your-demo-link.com"
-  }
-];
-```
-
-### 3. Skills
-Update your skills in `src/components/Skills.js`:
-```javascript
-const technicalSkills = [
-  { name: 'React.js', level: 85 },
-  { name: 'JavaScript', level: 80 }
-];
-```
-
-### 4. Education
-Update your education details in `src/components/Education.js`:
-```javascript
-const education = [
-  {
-    degree: "Your Degree",
-    institution: "Your Institution",
-    session: "2022-2026",
-    score: "8.5 CGPA",
-    type: "current"
-  }
-];
-```
-
-### 5. Certifications
-Update your certifications in `src/components/Certifications.js`:
-```javascript
-const certifications = [
-  {
-    title: "Certification Title",
-    issuer: "Issuing Organization",
-    year: "2024",
-    description: "Certification description",
-    image: "cert-image.jpg",
-    link: "https://certificate-link.com"
-  }
-];
-```
-
-### 6. Certificate Images
-To add certificate images:
-1. Place your certificate images in the `public` folder
-2. Update the `image` property in `src/components/Certifications.js`
-3. Uncomment the image tag in the component
-
-### 7. Project Images
-To add project images:
-1. Place your project images in the `public` folder
-2. Update the `image` property in `src/components/Projects.js`
-3. Replace the placeholder with actual images
-
-### 8. Profile Image
-To add your profile image:
-1. Place your profile image in the `public` folder
-2. Update the profile image in `src/components/Home.js`
-
-### 9. Styling
-Customize colors and styling in:
-- `src/index.css` - Global styles
-- Individual component CSS files for specific styling
-
-## 🎨 Color Scheme
-
-The portfolio uses a modern color scheme:
-- **Primary**: #667eea (Blue gradient)
-- **Secondary**: #764ba2 (Purple gradient)
-- **Accent**: #ffd700 (Gold)
-- **Text**: #2c3e50 (Dark gray)
-- **Background**: #f8f9fa (Light gray)
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive and optimized for:
-- Desktop (1200px+)
-- Tablet (768px - 1199px)
-- Mobile (320px - 767px)
-
-## 🚀 Deployment
-
-### Deploy to GitHub Pages
-1. Install gh-pages: `npm install --save-dev gh-pages`
-2. Add to package.json:
-   ```json
-   "homepage": "https://yourusername.github.io/your-repo-name",
-   "scripts": {
-     "predeploy": "npm run build",
-     "deploy": "gh-pages -d build"
-   }
-   ```
-3. Deploy: `npm run deploy`
-
-### Deploy to Netlify
-1. Build the project: `npm run build`
-2. Drag the `build` folder to Netlify
-3. Configure your domain
-
-### Deploy to Vercel
-1. Connect your GitHub repository to Vercel
-2. Vercel will automatically deploy your changes
-
-## 📞 Contact Form
-
-The contact form is currently set up to show an alert. To make it functional:
-
-1. **EmailJS Integration**:
-   ```bash
-   npm install emailjs-com
-   ```
-   
-2. **Update Contact.js**:
-   ```javascript
-   import emailjs from 'emailjs-com';
-   
-   const handleSubmit = (e) => {
-     e.preventDefault();
-     emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
-       .then((result) => {
-         alert('Message sent successfully!');
-       }, (error) => {
-         alert('Failed to send message.');
-       });
-   };
-   ```
-
-## 🔧 Available Scripts
-
-- `npm start` - Runs the app in development mode
-- `npm test` - Launches the test runner
-- `npm run build` - Builds the app for production
-- `npm run eject` - Ejects from Create React App
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Feel free to fork this project and customize it for your own portfolio!
-
-## 📞 Support
-
-If you have any questions or need help customizing the portfolio, feel free to reach out!
+[Live](https://satyamkumar.dev) · [Resume](./public/SatyamKumar_Backend_Resume.pdf)
 
 ---
 
-**Note**: Remember to update all placeholder links and images with your actual content before deploying your portfolio. 
+## Stack
+
+- React 18 + React Router 6
+- Plain CSS with design tokens (custom properties)
+- `@emailjs/browser` for the contact form
+- `react-icons` for iconography
+- Inter + JetBrains Mono via Google Fonts
+
+## Project structure
+
+```
+src/
+├── App.js                 # Routes + page composition
+├── App.css                # App-level layout
+├── index.css              # Design tokens, base styles, typography
+├── data/
+│   └── profile.js         # Single source of truth for all content
+└── components/
+    ├── Navbar.js / .css
+    ├── Home.js / .css         # Hero
+    ├── About.js / .css
+    ├── Experience.js / .css   # Work timeline (replaces old Training section)
+    ├── Projects.js / .css
+    ├── Skills.js / .css
+    ├── Education.js / .css
+    ├── Certifications.js / .css
+    ├── Contact.js / .css
+    ├── Footer.js / .css
+    └── CertificateViewer.js / .css
+```
+
+All copy — bio, role, experience, projects, skills, education, certifications — lives in `src/data/profile.js`. Edit that file to update the site; components are presentation-only.
+
+## Getting started
+
+```bash
+npm install
+npm start          # http://localhost:3000
+npm run build      # production bundle in /build
+```
+
+> The repo currently builds with Node ≥ 16 recommended. If you're on an older Node, run `DISABLE_ESLINT_PLUGIN=true npm run build`.
+
+## Configuration
+
+The contact form uses [EmailJS](https://www.emailjs.com/). Create a `.env.local` (never commit it) with:
+
+```
+REACT_APP_EMAILJS_SERVICE_ID=...
+REACT_APP_EMAILJS_TEMPLATE_ID=...
+REACT_APP_EMAILJS_PUBLIC_KEY=...
+```
+
+If these aren't set, the form shows a friendly message asking visitors to email directly.
+
+## Design system
+
+All visual constants live in `src/index.css` under `:root` — colors, spacing, typography, radius, shadows, container width. Change them once and the whole site updates.
+
+| Token            | Value                          |
+| ---------------- | ------------------------------ |
+| `--bg-0`         | `#07080d`                      |
+| `--accent`       | `#6ea8ff`                      |
+| `--accent-2`     | `#8b7dff`                      |
+| `--text-100`     | `#f5f7fa`                      |
+| `--font-sans`    | Inter                          |
+| `--font-mono`    | JetBrains Mono                 |
+| `--container`    | `1180px`                       |
+
+## Accessibility & performance
+
+- Semantic landmarks (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`)
+- Skip-to-content via in-page anchors and visible focus ring
+- `prefers-reduced-motion` respected
+- Lazy fonts via `preconnect`; only two font families
+- No JS-heavy animation libs in the critical path
+- Production gzipped JS ≈ 66 kB, CSS ≈ 5.4 kB
+
+## Deployment
+
+Drop the `build/` folder on Netlify, Vercel, GitHub Pages, or any static host. No server required.
+
+---
+
+Made by Satyam Kumar.

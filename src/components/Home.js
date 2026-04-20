@@ -1,79 +1,95 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown, FaMapMarkerAlt } from 'react-icons/fa';
+import { profile } from '../data/profile';
 import './Home.css';
 
 const Home = () => {
   return (
-    <section id="home" className="home">
-      <div className="container">
-        <div className="home-content">
-          <div className="home-text">
-            <h1 className="home-title">
-              Hi there! I'm <span className="highlight">Satyam Kumar</span> 👋
-            </h1>
-            <h2 className="home-subtitle">Computer Science Student & Web Developer</h2>
-            <p className="home-description">
-              A well-organized, creative and goal-oriented undergraduate possessing excellent 
-              problem solving, communication and leadership skills with a flair to explore 
-              suitable avenues in Computer Science Engineering while developing advance 
-              projects with efficiency and quality.
-            </p>
-            
-            <div className="home-stats">
-              <div className="stat">
-                <h3>82.3%</h3>
-                <p>Academic Score</p>
-              </div>
-              <div className="stat">
-                <h3>2+</h3>
-                <p>Projects</p>
-              </div>
-              <div className="stat">
-                <h3>3+</h3>
-                <p>Certifications</p>
-              </div>
-            </div>
-
-            <div className="home-buttons">
-              <a href="#projects" className="btn btn-primary">Check Out My Work</a>
-              <a href="#contact" className="btn btn-secondary">Let's Connect!</a>
-            </div>
-          </div>
-
-          <div className="home-image">
-            <div className="profile-card">
-              <div className="profile-image">
-                {/* Placeholder for profile image */}
-                <div className="profile-placeholder">
-                  <span>SK</span>
-                </div>
-              </div>
-              <div className="profile-info">
-                <h3>Satyam Kumar</h3>
-                <p>Computer Science Engineering</p>
-                <p>Chandigarh Group of Colleges</p>
-              </div>
-            </div>
-          </div>
+    <section id="home" className="hero">
+      <div className="container hero-container">
+        <div className="hero-meta">
+          <span className="hero-status">
+            <span className="status-dot" aria-hidden="true" />
+            Open to fullstack / SDE roles
+          </span>
         </div>
 
-        <div className="social-links">
-          <a href="https://github.com/Satyamkumar-003" target="_blank" rel="noopener noreferrer" className="social-link">
+        <h1 className="hero-title">
+          Hi, I'm <span className="hero-name">Satyam Kumar</span>.
+          <br />
+          I ship <span className="hero-accent">fullstack features</span> end‑to‑end.
+        </h1>
+
+        <p className="hero-sub">
+          {profile.role} at <strong>BigBasket</strong> working across Java + Vert.x backends and
+          React / UnifyApps admin frontends — owning features from schema and REST APIs to Kafka
+          consumers, admin UI, and production rollout on Kubernetes.
+        </p>
+
+        <div className="hero-actions">
+          <a href="#projects" className="btn btn-primary">
+            View my work
+          </a>
+          <a href="#contact" className="btn btn-secondary">
+            Get in touch
+          </a>
+          <a
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-resume-link"
+          >
+            Download resume ↗
+          </a>
+        </div>
+
+        <div className="hero-info">
+          <span className="hero-info-item">
+            <FaMapMarkerAlt /> {profile.location}
+          </span>
+          <span className="hero-info-divider" aria-hidden="true">•</span>
+          <a className="hero-info-item" href={`mailto:${profile.email}`}>
+            <FaEnvelope /> {profile.email}
+          </a>
+        </div>
+
+        <div className="hero-socials">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-social"
+            aria-label="GitHub"
+          >
             <FaGithub />
           </a>
-          <a href="https://www.linkedin.com/in/satyam-kumar-789780247/" target="_blank" rel="noopener noreferrer" className="social-link">
+          <a
+            href={profile.links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-social"
+            aria-label="LinkedIn"
+          >
             <FaLinkedin />
           </a>
-          <a href="mailto:satyamkumar0238@gmail.com" className="social-link">
-            <FaEnvelope />
-          </a>
-          <a href="tel:+918146611766" className="social-link">
-            <FaPhone />
-          </a>
         </div>
+
+        <div className="hero-stats">
+          {profile.highlights.map((h) => (
+            <div key={h.label} className="hero-stat">
+              <div className="hero-stat-value">{h.value}</div>
+              <div className="hero-stat-label">{h.label}</div>
+              <div className="hero-stat-sub">{h.sub}</div>
+            </div>
+          ))}
+        </div>
+
+        <a href="#about" className="hero-scroll" aria-label="Scroll to about section">
+          <FaArrowDown />
+        </a>
       </div>
     </section>
   );
 };
 
-export default Home; 
+export default Home;

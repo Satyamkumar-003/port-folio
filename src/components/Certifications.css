@@ -1,157 +1,84 @@
-.certifications {
-  background: white;
-}
-
-.certifications-grid {
+.cert-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.1rem;
 }
 
-.certification-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.certification-card:hover {
-  transform: translateY(-5px);
-}
-
-.cert-image {
-  height: 200px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.cert-placeholder {
+.cert-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  color: white;
-  text-align: center;
+  padding: 1.5rem 1.6rem;
 }
 
-.cert-placeholder svg {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.cert-placeholder span {
-  font-size: 1rem;
-  font-weight: 600;
-  max-width: 200px;
-  line-height: 1.3;
-}
-
-.cert-content {
-  padding: 1.5rem;
-}
-
-.cert-header {
+.cert-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 1rem;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
-.cert-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin: 0;
-  flex: 1;
+.cert-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(110, 168, 255, 0.10);
+  border: 1px solid rgba(110, 168, 255, 0.22);
+  color: var(--accent);
 }
 
 .cert-year {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-300);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
 }
 
-.cert-details {
-  margin-bottom: 1.5rem;
+.cert-title {
+  color: var(--text-100);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
 }
 
 .cert-issuer {
-  color: #667eea;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.cert-description {
-  color: #666;
-  line-height: 1.5;
-  margin: 0;
+.cert-desc {
+  color: var(--text-300);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 1.2rem;
 }
 
-.cert-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.cert-link {
-  display: flex;
+.cert-action {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  margin-top: auto;
+  font-size: 0.88rem;
+  color: var(--text-100);
+  border: 1px solid var(--border-strong);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  align-self: flex-start;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.cert-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.certifications-note {
-  margin-top: 3rem;
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 10px;
-  border-left: 4px solid #ffd700;
-}
-
-.certifications-note p {
-  margin: 0;
-  color: #666;
-  font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .certifications-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .cert-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .cert-actions {
-    justify-content: center;
-  }
-} 
-
-.certificate-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* This prevents distortion */
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+.cert-action:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(110, 168, 255, 0.08);
 }

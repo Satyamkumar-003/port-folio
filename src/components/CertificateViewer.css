@@ -1,58 +1,77 @@
-.certificate-viewer-bg {
-  min-height: 100vh;
-  background: #181a23;
-  display: flex;
+.cert-viewer {
+  min-height: calc(100vh - var(--nav-h));
+  padding: var(--space-7) 0 var(--space-9);
+}
+
+.cert-viewer-inner {
+  max-width: 960px;
+}
+
+.cert-back {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  color: var(--text-200);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-6);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.certificate-image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(30, 32, 40, 0.95);
-  padding: 2rem 2.5rem;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+.cert-back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(110, 168, 255, 0.08);
 }
 
-.certificate-full-img {
-  max-width: 90vw;
-  max-height: 70vh;
-  border-radius: 10px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-  margin-bottom: 1.5rem;
-  background: #fff;
+.cert-viewer-header {
+  margin-bottom: var(--space-5);
 }
 
-.certificate-title {
-  color: #fff;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+.cert-viewer-header h1 {
+  color: var(--text-100);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.cert-viewer-header p {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cert-figure {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.cert-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+.cert-error {
   text-align: center;
+  padding: var(--space-8) 0;
 }
 
-.back-btn {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 0.7rem 2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  transition: background 0.2s;
+.cert-error h1 {
+  color: var(--text-100);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.back-btn:hover {
-  background: linear-gradient(135deg, #ffd700, #764ba2);
-  color: #181a23;
-}
-
-.certificate-error {
-  color: #fff;
-  text-align: center;
+.cert-error p {
+  color: var(--text-300);
+  margin-bottom: 1.5rem;
 }

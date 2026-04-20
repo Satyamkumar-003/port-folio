@@ -1,125 +1,119 @@
 import React, { useState } from 'react';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane } from 'react-icons/fa';
-import './Contact.css';
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaLinkedin,
+  FaGithub,
+  FaPaperPlane,
+} from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import { profile } from '../data/profile';
+import './Contact.css';
 
+const initialState = { name: '', email: '', subject: '', message: '' };
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState(initialState);
+  const [status, setStatus] = useState({ state: 'idle', message: '' });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    const dataToSend = {
-      ...formData,
-      reply_to: formData.email  // <-- Add this line
-    };
-  
-    emailjs.send(
-  process.env.REACT_APP_EMAILJS_SERVICE_ID,
-  process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-  dataToSend,
-  process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-)
 
-    .then((result) => {
-      console.log('SUCCESS!', result.text);
-      alert("Thanks for reaching out! I'll get back to you soon! 😊");
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    })
-    .catch((error) => {
-      console.error('FAILED...', error.text);
-      alert("Oops! Something went wrong. Please try again later.");
-    });
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus({
+        state: 'error',
+        message:
+          'Email service is not configured yet. Please reach out via email or LinkedIn directly.',
+      });
+      return;
+    }
+
+    setStatus({ state: 'sending', message: 'Sending your message…' });
+
+    emailjs
+      .send(
+        serviceId,
+        templateId,
+        { ...formData, reply_to: formData.email },
+        publicKey
+      )
+      .then(() => {
+        setStatus({
+          state: 'success',
+          message: "Thanks — your message is on its way. I'll get back to you soon.",
+        });
+        setFormData(initialState);
+      })
+      .catch(() => {
+        setStatus({
+          state: 'error',
+          message: 'Something went wrong. Please try again or email me directly.',
+        });
+      });
   };
-  
-  
 
   const contactInfo = [
-    {
-      icon: <FaEnvelope />,
-      label: 'Email',
-      value: 'satyamkumar0238@gmail.com',
-      link: 'mailto:satyamkumar0238@gmail.com'
-    },
-    {
-      icon: <FaPhone />,
-      label: 'Phone',
-      value: '8146611766',
-      link: 'tel:+918146611766'
-    },
-    {
-      icon: <FaMapMarkerAlt />,
-      label: 'Location',
-      value: 'Patiala, Punjab, India',
-      link: null
-    },
-    {
-      icon: <FaLinkedin />,
-      label: 'LinkedIn',
-      value: 'satyam-kumar-789780247',
-      link: 'https://www.linkedin.com/in/satyam-kumar-789780247/'
-    },
-    {
-      icon: <FaGithub />,
-      label: 'GitHub',
-      value: 'Satyamkumar-003',
-      link: 'https://github.com/Satyamkumar-003'
-    }
+    { icon: <FaEnvelope />, label: 'Email', value: profile.email, link: `mailto:${profile.email}` },
+    { icon: <FaPhone />, label: 'Phone', value: profile.phone, link: `tel:${profile.phoneHref}` },
+    { icon: <FaMapMarkerAlt />, label: 'Location', value: profile.location, link: null },
+    { icon: <FaLinkedin />, label: 'LinkedIn', value: 'satyam-kumar', link: profile.links.linkedin },
+    { icon: <FaGithub />, label: 'GitHub', value: 'satyam0238', link: profile.links.github },
   ];
 
   return (
     <section id="contact" className="contact section">
       <div className="container">
-        <h2 className="section-title">Let's Connect!</h2>
-        
-        <div className="contact-content">
-          <div className="contact-info">
-            <h3>Get In Touch</h3>
-            <p>
-              Hey! I'm always excited to connect with fellow developers, discuss interesting 
-              projects, or just chat about technology. Feel free to reach out through any 
-              of the channels below - I'd love to hear from you!
-            </p>
-            
-            <div className="contact-details">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="contact-item">
-                  <div className="contact-icon">
-                    {info.icon}
-                  </div>
+        <div className="section-header">
+          <span className="section-eyebrow">Contact</span>
+          <h2 className="section-title">Let's build something together.</h2>
+          <p className="section-lede">
+            Open to backend / SDE roles and interesting collaborations. The fastest way to reach me
+            is email or LinkedIn — I usually reply within a day.
+          </p>
+        </div>
+
+        <div className="contact-grid">
+          <aside className="contact-info card">
+            <h3>Get in touch</h3>
+            <ul className="contact-details">
+              {contactInfo.map((info) => (
+                <li key={info.label} className="contact-item">
+                  <span className="contact-icon" aria-hidden="true">{info.icon}</span>
                   <div className="contact-text">
                     <span className="contact-label">{info.label}</span>
                     {info.link ? (
-                      <a href={info.link} target="_blank" rel="noopener noreferrer" className="contact-value">
+                      <a
+                        href={info.link}
+                        target={info.link.startsWith('http') ? '_blank' : undefined}
+                        rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="contact-value"
+                      >
                         {info.value}
                       </a>
                     ) : (
                       <span className="contact-value">{info.value}</span>
                     )}
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </aside>
 
-          <div className="contact-form">
-            <h3>Send Me a Message</h3>
-            <form onSubmit={handleSubmit}>
+          <form className="contact-form card" onSubmit={handleSubmit} noValidate>
+            <h3>Send a message</h3>
+
+            <div className="form-row">
               <div className="form-group">
-                <label htmlFor="name">Name *</label>
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   id="name"
@@ -127,12 +121,14 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="Your Name"
+                  autoComplete="name"
+                  placeholder="Your name"
+                  maxLength={80}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email *</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -140,46 +136,59 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="your.email@example.com"
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  maxLength={120}
                 />
               </div>
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="subject">Subject *</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  placeholder="What's this about?"
-                />
-              </div>
+            <div className="form-group">
+              <label htmlFor="subject">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                placeholder="What's this about?"
+                maxLength={120}
+              />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="message">Message *</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="5"
-                  placeholder="Tell me about your project or just say hi! 😊"
-                ></textarea>
-              </div>
+            <div className="form-group">
+              <label htmlFor="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows="5"
+                placeholder="A few lines about your project, role, or question."
+                maxLength={2000}
+              />
+            </div>
 
-              <button type="submit" className="submit-btn">
-                <FaPaperPlane />
-                <span>Send Message</span>
-              </button>
-            </form>
-          </div>
+            <button type="submit" className="btn btn-primary submit-btn" disabled={status.state === 'sending'}>
+              <FaPaperPlane />
+              <span>{status.state === 'sending' ? 'Sending…' : 'Send message'}</span>
+            </button>
+
+            {status.state !== 'idle' && status.state !== 'sending' ? (
+              <p
+                className={`form-status form-status--${status.state}`}
+                role={status.state === 'error' ? 'alert' : 'status'}
+              >
+                {status.message}
+              </p>
+            ) : null}
+          </form>
         </div>
       </div>
     </section>
   );
 };
 
-export default Contact; 
+export default Contact;

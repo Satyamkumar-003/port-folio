@@ -1,0 +1,39 @@
+.achv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.1rem;
+}
+
+.achv-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.6rem;
+}
+
+.achv-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(110, 168, 255, 0.10);
+  border: 1px solid rgba(110, 168, 255, 0.22);
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.achv-title {
+  color: var(--text-100);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.45rem;
+}
+
+.achv-body {
+  color: var(--text-300);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+}
